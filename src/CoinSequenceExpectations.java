@@ -11,8 +11,7 @@ public class CoinSequenceExpectations {
            
             Random random = new Random();
             button.addActionListener(e -> {
-                // Changes resultLabel text to show heads or tails based on a random flip
-                resultLabel.setText("Heads");      
+                // Changes resultLabel text to show heads or tails based on a random flip    
                 if (random.nextBoolean()) {
                     resultLabel.setText("Heads");
                 } else {
