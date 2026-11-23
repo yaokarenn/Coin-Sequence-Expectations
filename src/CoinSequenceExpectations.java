@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.util.Random;
 
 public class CoinSequenceExpectations {
+    private static int flipCount = 0;
+
     public static void main (String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Coin Sequence Expectations");
@@ -10,9 +12,12 @@ public class CoinSequenceExpectations {
             JButton resetButton = new JButton("Reset");
             JLabel resultLabel = new JLabel("Click to flip a coin");
             JLabel statusLabel = new JLabel("Target: HH");
+            JLabel countLabel = new JLabel("Flips: " + flipCount);
            
             Random random = new Random();
             flipButton.addActionListener(e -> {
+                flipCount++;
+                countLabel.setText("Flips: " + flipCount);
                 String previous = resultLabel.getText();
                 // changes result label to current flip
                 if (random.nextBoolean()) {
@@ -41,6 +46,8 @@ public class CoinSequenceExpectations {
                 resultLabel.setText("Click to flip a coin");
                 statusLabel.setText("Target: HH");
                 flipButton.setEnabled(true);
+                flipCount = 0;
+                countLabel.setText("Flips: " + flipCount);
             });
             
             JPanel panel = new JPanel();
@@ -48,6 +55,7 @@ public class CoinSequenceExpectations {
             panel.add(resetButton);
             panel.add(resultLabel);
             panel.add(statusLabel);
+            panel.add(countLabel);
             frame.add(panel);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(400, 400);

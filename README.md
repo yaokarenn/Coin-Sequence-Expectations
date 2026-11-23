@@ -48,3 +48,6 @@ Reset Button
 3. Run java src/CoinSequenceExpectations.java
 4. Click flip coin button to generate heads or tails
 5. Click reset to restart
+
+**Roadmap:**
+- [x] Flip counter that resets each round
