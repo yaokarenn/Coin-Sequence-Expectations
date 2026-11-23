@@ -51,3 +51,4 @@ Reset Button,
 
 **Roadmap:**
 - [x] Flip counter that resets each round
+- [x] Select HH, TT, HT, or TH as the target pattern
