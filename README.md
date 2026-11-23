@@ -1,5 +1,5 @@
 # Coin-Sequence-Expectations
-**Project Goal: **
+**Project Goal/ The problem: **
 
 I am trying to solve a mathematical/ probability misconception of how people think the percent chance of a specific sequence occurs. There is a very famous riddle called coin sequence expectations and I aim to help other people visualize this problem. 
 
@@ -36,3 +36,8 @@ jframe/ jpanel/ jbutton, etc...,
 java's random class, 
 vs code, 
 github
+
+**Features:**
+Coin Flip Button
+Sequence Detection (HH, TT, HT, TH)
+Reset Button
