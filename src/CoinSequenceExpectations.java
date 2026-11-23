@@ -6,12 +6,13 @@ public class CoinSequenceExpectations {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Coin Sequence Expectations");
 
-            JButton button = new JButton("Flip Coin");
+            JButton flipButton = new JButton("Flip Coin");
+            JButton resetButton = new JButton("Reset");
             JLabel resultLabel = new JLabel("Click to flip a coin");
             JLabel statusLabel = new JLabel("Target: HH");
            
             Random random = new Random();
-            button.addActionListener(e -> {
+            flipButton.addActionListener(e -> {
                 String previous = resultLabel.getText();
                 // changes result label to current flip
                 if (random.nextBoolean()) {
@@ -22,7 +23,7 @@ public class CoinSequenceExpectations {
 
                 if (previous.equals("Heads") && resultLabel.getText().equals("Heads")) {
                     System.out.println("got HH");
-                    button.setEnabled(false);
+                    flipButton.setEnabled(false);
                     statusLabel.setText("got HH");
                 } else if (previous.equals("Tails") && resultLabel.getText().equals("Tails")) {
                     System.out.println("got TT");
@@ -35,9 +36,16 @@ public class CoinSequenceExpectations {
                 }
                       
             });
+
+            resetButton.addActionListener(e -> {
+                resultLabel.setText("Click to flip a coin");
+                statusLabel.setText("Target: HH");
+                flipButton.setEnabled(true);
+            });
             
             JPanel panel = new JPanel();
-            panel.add(button);
+            panel.add(flipButton);
+            panel.add(resetButton);
             panel.add(resultLabel);
             panel.add(statusLabel);
             frame.add(panel);
