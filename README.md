@@ -38,9 +38,9 @@ vs code,
 github
 
 **Features:**
-Coin Flip Button
-Sequence Detection (HH, TT, HT, TH)
-Reset Button
+Coin Flip Button,
+Sequence Detection (HH, TT, HT, TH),
+Reset Button,
 
 **How to Run**
 1. Open terminal and clone the repository
