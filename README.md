@@ -41,3 +41,10 @@ github
 Coin Flip Button
 Sequence Detection (HH, TT, HT, TH)
 Reset Button
+
+**How to Run**
+1. Open terminal and clone the repository
+2. Open the Coin Sequence Expectations folder
+3. Run java src/CoinSequenceExpectations.java
+4. Click flip coin button to generate heads or tails
+5. Click reset to restart
