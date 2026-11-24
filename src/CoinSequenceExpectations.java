@@ -1,13 +1,16 @@
 import javax.swing.*;
-import java.util.Random;
+import java.util.*;
 
 public class CoinSequenceExpectations {
     private static int flipCount = 0;
+    private static ArrayList<Integer> hhResults = new ArrayList<>();
+    private static ArrayList<Integer> ttResults = new ArrayList<>();
+    private static ArrayList<Integer> htResults = new ArrayList<>();
+    private static ArrayList<Integer> thResults = new ArrayList<>();
 
     public static void main (String[] args) {
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Coin Sequence Expectations");
-
             JButton flipButton = new JButton("Flip Coin");
             JButton resetButton = new JButton("Reset");
             JLabel resultLabel = new JLabel("Click to flip a coin");
@@ -15,6 +18,7 @@ public class CoinSequenceExpectations {
             JLabel countLabel = new JLabel("Flips: " + flipCount);
             String[] patterns = {"HH", "TT", "HT", "TH"};
             JComboBox<String> patternComboBox = new JComboBox<>(patterns);
+
            
             Random random = new Random();
             flipButton.addActionListener(e -> {
@@ -34,18 +38,26 @@ public class CoinSequenceExpectations {
                     System.out.println("got HH");
                     flipButton.setEnabled(false);
                     statusLabel.setText("got HH");
+                    hhResults.add(flipCount);
+                    System.out.println(hhResults);
                 } else if (previous.equals("Tails") && resultLabel.getText().equals("Tails") && targetPattern.equals("TT")) {
                     System.out.println("got TT");
                     flipButton.setEnabled(false);
                     statusLabel.setText("got TT");
+                    ttResults.add(flipCount);
+                    System.out.println(ttResults);
                 } else if (previous.equals("Heads") && resultLabel.getText().equals("Tails") && targetPattern.equals("HT")) {
                     System.out.println("got HT");
                     flipButton.setEnabled(false);
                     statusLabel.setText("got HT");
+                    htResults.add(flipCount);
+                    System.out.println(htResults);
                 } else if (previous.equals("Tails") && resultLabel.getText().equals("Heads") && targetPattern.equals("TH")) {
                     System.out.println("got TH");
                     flipButton.setEnabled(false);
                     statusLabel.setText("got TH");
+                    thResults.add(flipCount);
+                    System.out.println(thResults);
                 } else {
                     System.out.println("nothing");
                 }
