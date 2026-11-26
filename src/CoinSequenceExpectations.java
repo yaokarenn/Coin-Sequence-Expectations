@@ -82,13 +82,33 @@ public class CoinSequenceExpectations {
             results.addActionListener(e -> {
                 String pattern = "" + patternComboBox.getSelectedItem();
                 if (pattern.equals("HH")) {
-                    resultsLabel.setText("HH results: " + hhResults);
+                    if (hhResults.isEmpty()) {
+                        resultsLabel.setText("No results for HH yet");
+                    } else {
+                        double average = getAverage(hhResults);
+                        resultsLabel.setText("HH results: " + hhResults + ", Average: " + String.format("%.2f", average));
+                    }
                 } else if (pattern.equals("TT")) {
-                    resultsLabel.setText("TT results: " + ttResults);
+                    if (ttResults.isEmpty()) {
+                        resultsLabel.setText("No results for TT yet");
+                    } else {
+                        double average = getAverage(ttResults);
+                        resultsLabel.setText("TT results: " + ttResults + ", Average: " + String.format("%.2f", average));
+                    }
                 } else if (pattern.equals("HT")) {
-                    resultsLabel.setText("HT results: " + htResults);
+                    if (htResults.isEmpty()) {
+                        resultsLabel.setText("No results for HT yet");
+                    } else {
+                        double average = getAverage(htResults);
+                        resultsLabel.setText("HT results: " + htResults + ", Average: " + String.format("%.2f", average));
+                    }
                 } else if (pattern.equals("TH")) {
-                    resultsLabel.setText("TH results: " + thResults);
+                    if (thResults.isEmpty()) {
+                        resultsLabel.setText("No results for TH yet");
+                    } else {
+                        double average = getAverage(thResults);
+                        resultsLabel.setText("TH results: " + thResults + ", Average: " + String.format("%.2f", average));
+                    }
                 }
             });
             
@@ -107,5 +127,17 @@ public class CoinSequenceExpectations {
             frame.setVisible(true);
 
         });
+    }
+
+    public static double getAverage(ArrayList<Integer> results) {
+        int sum = 0;
+        for (int i : results) {
+            sum += i;
+        }
+        double average = 0;
+        if (!results.isEmpty()) {
+            average = (double) sum / results.size();
+        }
+        return average;
     }
 }
