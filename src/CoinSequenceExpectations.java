@@ -18,6 +18,8 @@ public class CoinSequenceExpectations {
             JLabel countLabel = new JLabel("Flips: " + flipCount);
             String[] patterns = {"HH", "TT", "HT", "TH"};
             JComboBox<String> patternComboBox = new JComboBox<>(patterns);
+            JButton results = new JButton("Show Results");
+            JLabel resultsLabel = new JLabel("No results yet");
 
            
             Random random = new Random();
@@ -76,6 +78,19 @@ public class CoinSequenceExpectations {
             patternComboBox.addActionListener(e -> {
                 statusLabel.setText("Target: " + patternComboBox.getSelectedItem());
             });
+
+            results.addActionListener(e -> {
+                String pattern = "" + patternComboBox.getSelectedItem();
+                if (pattern.equals("HH")) {
+                    resultsLabel.setText("HH results: " + hhResults);
+                } else if (pattern.equals("TT")) {
+                    resultsLabel.setText("TT results: " + ttResults);
+                } else if (pattern.equals("HT")) {
+                    resultsLabel.setText("HT results: " + htResults);
+                } else if (pattern.equals("TH")) {
+                    resultsLabel.setText("TH results: " + thResults);
+                }
+            });
             
             JPanel panel = new JPanel();
             panel.add(flipButton);
@@ -84,6 +99,8 @@ public class CoinSequenceExpectations {
             panel.add(statusLabel);
             panel.add(countLabel);
             panel.add(patternComboBox);
+            panel.add(results);
+            panel.add(resultsLabel);
             frame.add(panel);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(400, 400);
