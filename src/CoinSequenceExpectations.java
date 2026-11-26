@@ -21,7 +21,7 @@ public class CoinSequenceExpectations {
             JButton results = new JButton("Show Results");
             JLabel resultsLabel = new JLabel("No results yet");
 
-           
+            // creates a random number generator to simulate coin flips
             Random random = new Random();
             flipButton.addActionListener(e -> {
                 String targetPattern = (String) patternComboBox.getSelectedItem();
@@ -29,6 +29,7 @@ public class CoinSequenceExpectations {
                 flipCount++;
                 countLabel.setText("Flips: " + flipCount);
                 String previous = resultLabel.getText();
+
                 // changes result label to current flip
                 if (random.nextBoolean()) {
                     resultLabel.setText("Heads");
@@ -36,6 +37,7 @@ public class CoinSequenceExpectations {
                     resultLabel.setText("Tails");
                 }    
 
+                // checks if the previous flip and current flip match the target pattern
                 if (previous.equals("Heads") && resultLabel.getText().equals("Heads") && targetPattern.equals("HH")) {
                     System.out.println("got HH");
                     flipButton.setEnabled(false);
@@ -66,6 +68,7 @@ public class CoinSequenceExpectations {
                       
             });
 
+            // resets the game to initial state
             resetButton.addActionListener(e -> {
                 resultLabel.setText("Click to flip a coin");
                 statusLabel.setText("Target: " + patternComboBox.getSelectedItem());
@@ -75,10 +78,12 @@ public class CoinSequenceExpectations {
                 countLabel.setText("Flips: " + flipCount);
             });
 
+            // updates the target pattern when the user selects a different option from the combo box
             patternComboBox.addActionListener(e -> {
                 statusLabel.setText("Target: " + patternComboBox.getSelectedItem());
             });
 
+            // displays the results for the selected pattern when the user clicks the "Show Results" button
             results.addActionListener(e -> {
                 String pattern = "" + patternComboBox.getSelectedItem();
                 if (pattern.equals("HH")) {
@@ -129,6 +134,7 @@ public class CoinSequenceExpectations {
         });
     }
 
+    // calculates the average number of flips needed to get the target pattern
     public static double getAverage(ArrayList<Integer> results) {
         int sum = 0;
         for (int i : results) {
