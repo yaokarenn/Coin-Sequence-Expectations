@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.util.*;
+import java.awt.*;
 
 public class CoinSequenceExpectations {
     private static int flipCount = 0;
@@ -14,12 +15,15 @@ public class CoinSequenceExpectations {
             JButton flipButton = new JButton("Flip Coin");
             JButton resetButton = new JButton("Reset");
             JLabel resultLabel = new JLabel("Click to flip a coin");
+            resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
+            resultLabel.setFont(new Font("SansSerif", Font.BOLD, 28));
             JLabel statusLabel = new JLabel("Target: HH");
             JLabel countLabel = new JLabel("Flips: " + flipCount);
             String[] patterns = {"HH", "TT", "HT", "TH"};
             JComboBox<String> patternComboBox = new JComboBox<>(patterns);
             JButton results = new JButton("Show Results");
             JLabel resultsLabel = new JLabel("No results yet");
+            resultsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
             // creates a random number generator to simulate coin flips
             Random random = new Random();
@@ -39,36 +43,26 @@ public class CoinSequenceExpectations {
 
                 // checks if the previous flip and current flip match the target pattern
                 if (previous.equals("Heads") && resultLabel.getText().equals("Heads") && targetPattern.equals("HH")) {
-                    System.out.println("got HH");
                     flipButton.setEnabled(false);
                     statusLabel.setText("got HH");
                     hhResults.add(flipCount);
-                    System.out.println(hhResults);
                 } else if (previous.equals("Tails") && resultLabel.getText().equals("Tails") && targetPattern.equals("TT")) {
-                    System.out.println("got TT");
                     flipButton.setEnabled(false);
                     statusLabel.setText("got TT");
                     ttResults.add(flipCount);
-                    System.out.println(ttResults);
                 } else if (previous.equals("Heads") && resultLabel.getText().equals("Tails") && targetPattern.equals("HT")) {
-                    System.out.println("got HT");
                     flipButton.setEnabled(false);
                     statusLabel.setText("got HT");
                     htResults.add(flipCount);
-                    System.out.println(htResults);
                 } else if (previous.equals("Tails") && resultLabel.getText().equals("Heads") && targetPattern.equals("TH")) {
-                    System.out.println("got TH");
                     flipButton.setEnabled(false);
                     statusLabel.setText("got TH");
                     thResults.add(flipCount);
-                    System.out.println(thResults);
-                } else {
-                    System.out.println("nothing");
                 }
                       
-            });
+            }); 
 
-            // resets the game to initial state
+            // resets the current game and user is given the option to select new pattern
             resetButton.addActionListener(e -> {
                 resultLabel.setText("Click to flip a coin");
                 statusLabel.setText("Target: " + patternComboBox.getSelectedItem());
@@ -117,20 +111,26 @@ public class CoinSequenceExpectations {
                 }
             });
             
-            JPanel panel = new JPanel();
-            panel.add(flipButton);
-            panel.add(resetButton);
-            panel.add(resultLabel);
-            panel.add(statusLabel);
-            panel.add(countLabel);
-            panel.add(patternComboBox);
-            panel.add(results);
-            panel.add(resultsLabel);
+            JPanel panel = new JPanel(new BorderLayout());
+            panel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
+            JPanel topPanel = new JPanel();
+            topPanel.add(patternComboBox);
+            topPanel.add(statusLabel);
+            panel.add(topPanel, BorderLayout.NORTH);
+            panel.add(resultLabel, BorderLayout.CENTER);
+            JPanel buttonPanel = new JPanel();
+            buttonPanel.add(flipButton);
+            buttonPanel.add(resetButton);
+            buttonPanel.add(countLabel);
+            buttonPanel.add(results);
+            JPanel bottomPanel = new JPanel(new BorderLayout());
+            bottomPanel.add(buttonPanel, BorderLayout.NORTH);
+            bottomPanel.add(resultsLabel, BorderLayout.SOUTH);
+            panel.add(bottomPanel, BorderLayout.SOUTH);
             frame.add(panel);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(400, 400);
             frame.setVisible(true);
-
         });
     }
 
